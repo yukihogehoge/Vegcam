@@ -13,6 +13,10 @@ try:
   while True:
     # frameをキャプチャ
     ret, frame = cap.read()
+    if not ret:
+      print("フレームが取得できませんでした。")
+      sleep(5)
+      continue
 
     # 現在時刻でファイル名を生成
     timestamp = datetime.now().strftime("%Y年%m月%d日%H時%M分%S秒")
