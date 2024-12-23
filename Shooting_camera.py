@@ -4,7 +4,7 @@ from datetime import datetime
 
 # カメラの初期化
 for i in range(1, 32):
-  cap = cv2.VideoCapture(i)
+  cap = cv2.VideoCapture(i, cv2.CAP_V4L2)
 
   if not cap.isOpened():
     print("正常に読み込めませんでした。")
