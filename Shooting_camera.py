@@ -8,7 +8,7 @@ for i in range(1, 32):
 
   if not cap.isOpened():
     print("正常に読み込めませんでした。")
-    exit()
+    continue
 
   try:
     while True:
@@ -16,7 +16,6 @@ for i in range(1, 32):
       ret, frame = cap.read()
       if not ret:
         print("フレームが取得できませんでした。")
-        sleep(5)
         break
 
       # 現在時刻でファイル名を生成
