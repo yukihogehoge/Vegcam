@@ -3,7 +3,7 @@ from time import sleep
 from datetime import datetime
 
 # カメラの初期化
-for i in range(0, 32):
+for i in range(0, 100):
   cap = cv2.VideoCapture(i)
 
   if not cap.isOpened():
