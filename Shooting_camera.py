@@ -21,7 +21,7 @@ try:
         picam2.capture_file(filename)
 
         # 15分間待機
-        sleep(60 * 15)
+        sleep(60)
 
 except KeyboardInterrupt:
     print("キーボード入力が行われたので終了します。")
