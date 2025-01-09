@@ -1,37 +1,30 @@
-import cv2
+from picamera2 import Picamera2
 from time import sleep
 from datetime import datetime
 
-# カメラの初期化
-for i in range(0, 100):
-  cap = cv2.VideoCapture(i)
+# Picamera2の初期化
+picam2 = Picamera2()
+picam2.configure(picam2.create_still_configuration())
 
-  if not cap.isOpened():
-    print("正常に読み込めませんでした。")
-    continue
+# カメラを起動
+picam2.start()
 
-  try:
+try:
     while True:
-      # frameをキャプチャ
-      ret, frame = cap.read()
-      if not ret:
-        print("フレームが取得できませんでした。")
-        break
+        # 現在時刻でファイル名を生成
+        timestamp = datetime.now().strftime("%Y年%m月%d日%H時%M分%S秒")
+        filename = f"image_{timestamp}.jpg"
 
-      # 現在時刻でファイル名を生成
-      timestamp = datetime.now().strftime("%Y年%m月%d日%H時%M分%S秒")
-      filename = f"image_{timestamp}.jpg"
+        # 写真を撮影して保存
+        print(f"撮影中: {filename}")
+        picam2.capture_file(filename)
 
-      # 写真を保存
-      print(f"撮影中:{filename}")
-      cv2.imwrite(filename, frame)
+        # 15分間待機
+        sleep(60 * 15)
 
-      # 15分間待機
-      sleep(60 * 15)
-
-  except KeyboardInterrupt:
+except KeyboardInterrupt:
     print("キーボード入力が行われたので終了します。")
 
-  finally:
-    cap.release()
-    cv2.destroyAllWindows()
+finally:
+    # カメラを停止
+    picam2.stop()
