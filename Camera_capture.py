@@ -10,6 +10,8 @@ from time import sleep
 """
 from datetime import datetime
 
+from Send_to_google import send_to_google_form
+
 def capture_images():
   # Picamera2の初期化
   # Picamera2のインスタンスを作成
@@ -30,6 +32,10 @@ def capture_images():
       print(f"撮影中: {filename}")
       # 現在の映像を静止画として保存
       picam2.capture_file(filename)
+
+      # 写真をGoogleformで送信
+      print("google form に送信中…")
+      send_to_google_form(photo_path=filename, time=timestamp)
 
       # 15分間待機
       sleep(60 * 15)
