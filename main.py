@@ -1,4 +1,4 @@
-from Shooting_camera import capture_images
+from Camera_capture import capture_images
 
 def main():
   capture_images()
