@@ -4,6 +4,7 @@ from pydrive2.drive import GoogleDrive
 def upload_to_google_drive(file_path):
     # Google Drive APIの認証
     gauth = GoogleAuth()
+    gauth.settings_file = "settings.yaml"  # settings.yaml を適用
     gauth.LocalWebserverAuth()  # ブラウザを使用して認証
     drive = GoogleDrive(gauth)
 
