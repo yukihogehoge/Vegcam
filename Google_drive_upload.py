@@ -9,7 +9,7 @@ def upload_to_google_drive(file_path):
     drive = GoogleDrive(gauth)
 
     # アップロード先のフォルダID
-    folder_id = "1is749wEyc_7X-9s-oUx5cbJvjQguK9Yv"
+    folder_id = "1rAbRMiX2mAmBHIPmbrAbp0eBGEW6eYp7"
 
     # ファイルをアップロード
     file_name = file_path.split('/')[-1]
