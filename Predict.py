@@ -5,7 +5,7 @@ import numpy as np
 # モデルをロード
 model = load_model('vegetable_classifier.keras')
 
-image_path = test_carrot.png
+image_path = "test_carrot.png"
 
 # 推論関数
 def predict(image_path):
