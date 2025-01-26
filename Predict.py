@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # モデルをロード
-model = load_model('vegetable_classifier.keras')
+model = load_model('vegetable_classifier.keras', compile=False)
 
 image_path = "test_carrot.png"
 
