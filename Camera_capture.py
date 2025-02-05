@@ -31,7 +31,7 @@ def capture_images():
     while True:
       # 現在時刻でファイル名を生成
       timestamp = datetime.now().strftime("%Y年%m月%d日%H時%M分%S秒")
-      filename = os.path.join(save_dir, "image_{timestamp}.jpg")
+      filename = os.path.join(save_dir, f"image_{timestamp}.jpg")
 
       # 写真を撮影して保存
       print(f"撮影中: {filename}")
