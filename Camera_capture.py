@@ -3,6 +3,7 @@ from picamera2 import Picamera2
 # controlsはカメラ設定の調整時に使用（このコードでは使用しない）
 # from libcamera import controls
 # 一定時間停止するためにPython標準ライブラリのtimeモジュールからsleep関数をインポート
+import os
 from time import sleep
 """
 日付や時刻を扱うためのdatetimeモジュールをインポート
@@ -19,6 +20,10 @@ def capture_images():
   # 高品質な写真を撮るための設定を生成
   picam2.configure(picam2.create_still_configuration())
 
+  # 保存フォルダの指定
+  save_dir = "/home/bejikame/Vegcam/picturebox"
+  os.makedirs(save_dir, exist_ok=True)
+
   # カメラを起動
   picam2.start()
 
@@ -26,7 +31,7 @@ def capture_images():
     while True:
       # 現在時刻でファイル名を生成
       timestamp = datetime.now().strftime("%Y年%m月%d日%H時%M分%S秒")
-      filename = f"image_{timestamp}.jpg"
+      filename = os.path.join(save_dir, "image_{timestamp}.jpg")
 
       # 写真を撮影して保存
       print(f"撮影中: {filename}")
