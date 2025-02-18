@@ -1,7 +1,10 @@
 from google_auth_oauthlib.flow import InstalledAppFlow
 import pickle
 
-SCOPES = ["https://www.googleapis.com/auth/gmail.send"]
+SCOPES = [
+    "https://www.googleapis.com/auth/gmail.send",
+    "https://www.googleapis.com/auth/drive.file"
+    ]
 
 def authenticate_gmail():
     flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json", SCOPES)

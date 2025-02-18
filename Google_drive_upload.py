@@ -1,31 +1,34 @@
-from pydrive2.auth import GoogleAuth
-from pydrive2.drive import GoogleDrive
+import pickle
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
 
+# 認証情報の読み込み
+def load_credentials():
+    with open("token.pickle", "rb") as token:
+        return pickle.load(token)
+
+# Google Drive へのアップロード
 def upload_to_google_drive(file_path):
-    # Google Drive APIの認証
-    gauth = GoogleAuth()
-    gauth.settings_file = "settings.yaml"  # settings.yaml を適用
-    gauth.LocalWebserverAuth()  # ブラウザを使用して認証
-    drive = GoogleDrive(gauth)
+    creds = load_credentials()
+    service = build("drive", "v3", credentials=creds)
 
-    # アップロード先のフォルダID
-    folder_id = "1rAbRMiX2mAmBHIPmbrAbp0eBGEW6eYp7"
-
-    # ファイルをアップロード
+    folder_id = "1rAbRMiX2mAmBHIPmbrAbp0eBGEW6eYp7"  # アップロード先フォルダID
     file_name = file_path.split('/')[-1]
-    file = drive.CreateFile({
-        'title': file_name,       # Google Drive上のファイル名
-        'parents': [{'id': folder_id}]  # アップロード先フォルダを指定
-    })
-    file.SetContentFile(file_path)
-    file.Upload()
 
-    # アップロードしたファイルの共有リンクを取得
-    file.InsertPermission({
-        'type': 'anyone',  # 全員に公開
-        'value': 'anyone',
-        'role': 'reader'   # 読み取り専用
-    })
+    file_metadata = {
+        "name": file_name,
+        "parents": [folder_id]
+    }
+    media = MediaFileUpload(file_path, resumable=True)
 
-    print(f"Uploaded file URL: {file['alternateLink']}")
-    return file['alternateLink']
+    file = service.files().create(body=file_metadata, media_body=media, fields="id, webViewLink").execute()
+
+    # 共有設定（全員に閲覧可能にする）
+    permission = {
+        "type": "anyone",
+        "role": "reader"
+    }
+    service.permissions().create(fileId=file["id"], body=permission).execute()
+
+    print(f"✅ アップロード成功！URL: {file['webViewLink']}")
+    return file["webViewLink"]
