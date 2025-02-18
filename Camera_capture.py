@@ -11,7 +11,7 @@ from time import sleep
 """
 from datetime import datetime
 
-from Detect import detect__objects_in_image
+from Predict import detect_objects_in_image
 
 from Google_drive_upload import upload_to_google_drive
 
@@ -41,7 +41,7 @@ def capture_images():
       picam2.capture_file(filename)
 
       # 画像と検出結果をwebページ上に表示
-      detect__objects_in_image(filename)
+      detect_objects_in_image(filename)
 
       # 写真をGoogle driveに保存
       print("google driveにアップロード中…")
