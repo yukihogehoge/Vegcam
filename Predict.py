@@ -25,7 +25,7 @@ def detect_objects_in_image(image_path):
         cv2_img = cv2.imread(image_path)
 
         # 物体検出
-        results = model(cv2_img, conf=0.4, classes=CLASS_IDS)
+        results = model(cv2_img, conf=0.2, classes=CLASS_IDS)
 
         # 結果を描画
         output_img = results[0].plot(labels=True, conf=True)
