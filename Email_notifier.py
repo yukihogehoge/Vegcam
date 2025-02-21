@@ -44,12 +44,12 @@ def send_email_gmail(recipient, subject, body, item_name):
 
     try:
         service.users().messages().send(userId="me", body={"raw": encoded_message}).execute()
-        print(f"メール送信成功: {recipient}（{item_name}）")
+        print(f"✅メール送信成功: {recipient}（{item_name}）")
 
         # 送信時間を記録
         last_sent[item_name] = current_time
         save_last_sent(last_sent)
         return True
     except Exception as e:
-        print(f"メール送信失敗: {e}")
+        print(f"❌メール送信失敗: {e}")
         return False

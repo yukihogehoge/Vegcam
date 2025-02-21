@@ -8,9 +8,9 @@ from Email_notifier import send_email_gmail
 EMAIL_RECIPIENTS = {
     "バナナ": "banana_producer@example.com",
     "りんご": "apple_producer@example.com",
-    "オレンジ": "f24ba087@chuo.ac.jp", # 自分へ送信
+    "オレンジ": "orange_producer@example.com", # 自分へ送信
     "ブロッコリー": "broccoli_producer@example.com",
-    "にんじん": "carrot_producer@example.com"
+    "にんじん": "f24ba087@chuo.ac.jp"
 }
 
 # 検出対象クラス
