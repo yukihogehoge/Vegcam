@@ -6,7 +6,7 @@ from Email_notifier import send_email_gmail
 
 # メール通知先
 EMAIL_RECIPIENTS = {
-    "バナナ": "banana_producer@example.com",
+    "バナナ": "vegcam117@gmail.com",
     "りんご": "vegcam117@gmail.com",
     "オレンジ": "vegcam117@gmail.com",
     "ブロッコリー": "broccoli_producer@example.com",
@@ -45,7 +45,7 @@ def detect_objects_in_image(image_path):
             # 在庫が2個以下ならメール通知
             if count <= 2:
                 subject = f"[在庫警告] {name}の在庫が少なくなっています！"
-                body = f"現在の在庫: {count} 個です。¥n補充をお願いします。¥nhttps://sites.google.com/view/vegcam"
+                body = f"現在の在庫: {count} 個です。\n補充をお願いします。\nhttps://sites.google.com/view/vegcam"
                 send_email_gmail(EMAIL_RECIPIENTS[name], subject, body, name)
 
         return counts
