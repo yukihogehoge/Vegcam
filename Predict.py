@@ -7,8 +7,8 @@ from Email_notifier import send_email_gmail
 # メール通知先
 EMAIL_RECIPIENTS = {
     "バナナ": "banana_producer@example.com",
-    "りんご": "apple_producer@example.com",
-    "オレンジ": "orange_producer@example.com",
+    "りんご": "vegcam117@gmail.com",
+    "オレンジ": "vegcam117@gmail.com",
     "ブロッコリー": "broccoli_producer@example.com",
     "にんじん": "vegcam117@gmail.com" # 自分へ送信
 }
