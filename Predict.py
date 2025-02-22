@@ -10,7 +10,7 @@ EMAIL_RECIPIENTS = {
     "りんご": "apple_producer@example.com",
     "オレンジ": "orange_producer@example.com", # 自分へ送信
     "ブロッコリー": "broccoli_producer@example.com",
-    "にんじん": "f24ba087@chuo.ac.jp"
+    "にんじん": "vegcam117@gmail.com"
 }
 
 # 検出対象クラス
@@ -45,7 +45,7 @@ def detect_objects_in_image(image_path):
             # 在庫が2個以下ならメール通知
             if count <= 2:
                 subject = f"[在庫警告] {name}の在庫が少なくなっています！"
-                body = f"現在の在庫: {count} 個です。補充をお願いします。"
+                body = f"現在の在庫: {count} 個です。補充をお願いします。" + "https://sites.google.com/view/vegcam"
                 send_email_gmail(EMAIL_RECIPIENTS[name], subject, body, name)
 
         return counts
